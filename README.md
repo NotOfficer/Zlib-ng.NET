@@ -1,6 +1,6 @@
 <div align="center">
 
-# Utils
+# Zlib-ng.NET
 
 A .NET wrapper for zlib-ng
 
