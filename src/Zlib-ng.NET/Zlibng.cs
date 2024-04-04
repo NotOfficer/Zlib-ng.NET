@@ -2,11 +2,27 @@
 
 namespace ZlibngDotNet;
 
+/// <summary>
+/// Wrapper class for the native zlib-ng library
+/// </summary>
 public unsafe partial class Zlibng : IDisposable
 {
 	private readonly nint _handle;
 
+	/// <summary>
+	/// Initializes via a native zlib-ng library path
+	/// </summary>
+	/// <returns/>
+	/// <param name="libraryPath">The path of the native zlib-ng library to be loaded</param>
+	/// <inheritdoc cref="NativeLibrary.Load(string)"/>
 	public Zlibng(string libraryPath) : this(NativeLibrary.Load(libraryPath)) { }
+
+	/// <summary>
+	/// Initializes via a native zlib-ng library handle
+	/// </summary>
+	/// <param name="handle">The handle of the native zlib-ng library to be loaded</param>
+	/// <exception cref="ArgumentNullException">If the handle is invalid</exception>
+	/// <exception cref="EntryPointNotFoundException">If the handle/library is invalid or not supported</exception>
 	public Zlibng(nint handle)
 	{
 		Util.ThrowIfNull(handle);
@@ -29,15 +45,18 @@ public unsafe partial class Zlibng : IDisposable
 
 	private void ReleaseUnmanagedResources()
 	{
-		NativeLibrary.Free(_handle);
+		if (_handle != nint.Zero)
+			NativeLibrary.Free(_handle);
 	}
 
+	/// <inheritdoc/>
 	public void Dispose()
 	{
 		ReleaseUnmanagedResources();
 		GC.SuppressFinalize(this);
 	}
 
+	/// <inheritdoc/>
 	~Zlibng()
 	{
 		ReleaseUnmanagedResources();

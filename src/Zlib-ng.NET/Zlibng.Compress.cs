@@ -5,15 +5,15 @@ namespace ZlibngDotNet;
 public unsafe partial class Zlibng
 {
 	/// <summary>
-	///   Compresses the source buffer into the destination buffer.  sourceLen is
-	/// the byte length of the source buffer.  Upon entry, destLen is the total size
-	/// of the destination buffer, which must be at least the value returned by
-	/// compressBound(sourceLen).  Upon exit, destLen is the actual size of the
-	/// compressed data.  compress() is equivalent to compress2() with a level
-	/// parameter of Z_DEFAULT_COMPRESSION.
-	///
-	///   compress returns Z_OK if success, Z_MEM_ERROR if there was not
-	/// enough memory, Z_BUF_ERROR if there was not enough room in the output
+	///   Compresses the source buffer into the destination buffer.  sourceLen is<br/>
+	/// the byte length of the source buffer.  Upon entry, destLen is the total size<br/>
+	/// of the destination buffer, which must be at least the value returned by<br/>
+	/// compressBound(sourceLen).  Upon exit, destLen is the actual size of the<br/>
+	/// compressed data.  compress() is equivalent to compress2() with a level<br/>
+	/// parameter of Z_DEFAULT_COMPRESSION.<br/>
+	/// <br/>
+	///   compress returns Z_OK if success, Z_MEM_ERROR if there was not<br/>
+	/// enough memory, Z_BUF_ERROR if there was not enough room in the output<br/>
 	/// buffer.
 	/// </summary>
 	public delegate* unmanaged<void*, ref nint, void*, nint, ZlibngCompressionResult> CompressFunctionPointer { get; }

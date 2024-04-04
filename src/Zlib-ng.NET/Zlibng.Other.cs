@@ -17,12 +17,18 @@ public unsafe partial class Zlibng
 	public delegate* unmanaged<byte*> VersionFunctionPointer { get; }
 
 	/// <inheritdoc cref="VersionFunctionPointer" />
-	public string GetVersionString => Util.GetStringFromPtr(VersionFunctionPointer());
+	public string GetVersionString() => Util.GetStringFromPtr(VersionFunctionPointer());
 
 	/// <inheritdoc cref="CompressBoundFunctionPointer" />
 	public nint CompressBound<T>(T sourceLen) where T : IBinaryInteger<T>
 		=> CompressBoundFunctionPointer(nint.CreateChecked(sourceLen));
 
+	/// <summary>
+	/// Check if the (un)compress <see cref="int"/> return value indicates an error.
+	/// </summary>
+	/// <param name="result"></param>
+	/// <param name="error"></param>
+	/// <returns></returns>
 	public static bool IsError(int result, out ZlibngCompressionResult error)
 	{
 		var compressionResult = (ZlibngCompressionResult)result;
@@ -35,7 +41,5 @@ public unsafe partial class Zlibng
 		return false;
 	}
 
-	// not using this until zstream is implemeted
-	//public static bool IsError(ZlibngCompressionResult result) => result <= ZlibngCompressionResult.NeedDict;
-	public static bool IsError(ZlibngCompressionResult result) => result <= ZlibngCompressionResult.Ok;
+	internal static bool IsError(ZlibngCompressionResult result) => result <= ZlibngCompressionResult.NeedDict;
 }
