@@ -3,18 +3,16 @@ using System.Globalization;
 using System.Runtime.CompilerServices;
 
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Running;
 
 using ZlibngDotNet;
 
-//var benches = new ZlibngBenchmarks();
-//benches.Setup();
-
-//var test = benches.Uncompress_Zlibng();
-
 BenchmarkRunner.Run<ZlibngBenchmarks>();
 
 [MemoryDiagnoser(false)]
+[SimpleJob(RuntimeMoniker.Net90, baseline: true)]
+[SimpleJob(RuntimeMoniker.Net80)]
 public class ZlibngBenchmarks
 {
 	private Zlibng _zlibng;
@@ -25,6 +23,7 @@ public class ZlibngBenchmarks
 	public void Setup()
 	{
 		_zlibng = new Zlibng(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"Libraries\zlib-ng2.dll"));
+		Console.WriteLine($"Zlib-ng version: {_zlibng.GetVersionString()}");
 
 		const int count = 4_000_00;
 		var randomBuffer = new byte[count * sizeof(long)]; // 3.2 MB

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks>net9.0;net8.0</TargetFrameworks>
     <RootNamespace>ZlibngDotNet.Benchmarks</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
@@ -11,8 +11,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BenchmarkDotNet" Version="0.13.12" />
-    <PackageReference Include="ProDotNetZip" Version="1.17.0" />
+    <PackageReference Include="BenchmarkDotNet" Version="0.14.0" />
+    <PackageReference Include="ProDotNetZip" Version="1.18.0" />
     <PackageReference Include="SharpZipLib" Version="1.4.2" />
   </ItemGroup>
 
