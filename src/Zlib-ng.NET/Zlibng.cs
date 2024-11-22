@@ -7,7 +7,10 @@ namespace ZlibngDotNet;
 /// </summary>
 public unsafe partial class Zlibng : IDisposable
 {
-	private readonly nint _handle;
+	/// <summary>
+	/// Library handle for the current zlib-ng instance
+	/// </summary>
+	public nint Handle { get; }
 
 	/// <summary>
 	/// Initializes via a native zlib-ng library path
@@ -26,14 +29,14 @@ public unsafe partial class Zlibng : IDisposable
 	public Zlibng(nint handle)
 	{
 		Util.ThrowIfNull(handle);
-		_handle = handle;
+		Handle = handle;
 
-		var compressBoundAddress = NativeLibrary.GetExport(_handle, "zng_compressBound");
-		var uncompressAddress    = NativeLibrary.GetExport(_handle, "zng_uncompress");
-		var uncompress2Address   = NativeLibrary.GetExport(_handle, "zng_uncompress2");
-		var compressAddress      = NativeLibrary.GetExport(_handle, "zng_compress");
-		var compress2Address     = NativeLibrary.GetExport(_handle, "zng_compress2");
-		var versionAddress       = NativeLibrary.GetExport(_handle, "zlibng_version");
+		var compressBoundAddress = NativeLibrary.GetExport(Handle, "zng_compressBound");
+		var uncompressAddress    = NativeLibrary.GetExport(Handle, "zng_uncompress");
+		var uncompress2Address   = NativeLibrary.GetExport(Handle, "zng_uncompress2");
+		var compressAddress      = NativeLibrary.GetExport(Handle, "zng_compress");
+		var compress2Address     = NativeLibrary.GetExport(Handle, "zng_compress2");
+		var versionAddress       = NativeLibrary.GetExport(Handle, "zlibng_version");
 
 		CompressBoundFunctionPointer = (delegate* unmanaged<nint, nint>)compressBoundAddress;
 		UncompressFunctionPointer    = (delegate* unmanaged<void*, ref nint, void*, nint, ZlibngCompressionResult>)uncompressAddress;
@@ -45,8 +48,8 @@ public unsafe partial class Zlibng : IDisposable
 
 	private void ReleaseUnmanagedResources()
 	{
-		if (_handle != nint.Zero)
-			NativeLibrary.Free(_handle);
+		if (Handle != nint.Zero)
+			NativeLibrary.Free(Handle);
 	}
 
 	/// <inheritdoc/>
