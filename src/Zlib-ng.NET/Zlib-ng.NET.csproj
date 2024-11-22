@@ -9,16 +9,16 @@
 
     <Description>A zlib-ng wrapper for .NET</Description>
     <PackageTags>zlib-ng, zlib, zlibng</PackageTags>
-    <AssemblyVersion>1.1.0.0</AssemblyVersion>
-    <FileVersion>1.1.0.0</FileVersion>
-    <Version>1.1.0</Version>
+    <AssemblyVersion>1.1.1.0</AssemblyVersion>
+    <FileVersion>1.1.1.0</FileVersion>
+    <Version>1.1.1</Version>
   </PropertyGroup>
 
   <PropertyGroup>
     <Authors>NotOfficer</Authors>
     <Copyright>Copyright (c) 2024 NotOfficer</Copyright>
     <NeutralLanguage>en</NeutralLanguage>
-    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageIcon>icon.png</PackageIcon>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
