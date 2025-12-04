@@ -2,18 +2,15 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net9.0;net8.0</TargetFrameworks>
     <RootNamespace>ZlibngDotNet.Benchmarks</RootNamespace>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BenchmarkDotNet" Version="0.15.8" />
-    <PackageReference Include="ProDotNetZip" Version="1.20.0" />
-    <PackageReference Include="SharpZipLib" Version="1.4.2" />
+    <PackageReference Include="BenchmarkDotNet" />
+    <PackageReference Include="ProDotNetZip" />
+    <PackageReference Include="SharpZipLib" />
   </ItemGroup>
 
   <ItemGroup>

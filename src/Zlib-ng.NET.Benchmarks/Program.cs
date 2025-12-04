@@ -15,9 +15,9 @@ BenchmarkRunner.Run<ZlibngBenchmarks>();
 [SimpleJob(RuntimeMoniker.Net80)]
 public class ZlibngBenchmarks
 {
-	private Zlibng _zlibng;
-	private byte[] _destBuffer;
-	private byte[] _srcBuffer;
+	private Zlibng _zlibng = null!;
+	private byte[] _destBuffer = null!;
+	private byte[] _srcBuffer = null!;
 
 	[GlobalSetup]
 	public void Setup()

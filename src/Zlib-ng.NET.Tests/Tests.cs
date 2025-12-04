@@ -7,8 +7,8 @@ namespace ZlibngDotNet.Tests;
 
 public class Tests : IAsyncLifetime
 {
-	private string _filePath;
-	private Zlibng _zlibng;
+	private string _filePath = null!;
+	private Zlibng _zlibng = null!;
 
 	public async Task InitializeAsync()
 	{
