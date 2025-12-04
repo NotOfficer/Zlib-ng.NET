@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Zlib-ng.NET.Benchmarks/Zlib-ng.NET.Benchmarks.csproj" />
+  <Project Path="Zlib-ng.NET.Tests/Zlib-ng.NET.Tests.csproj" />
+  <Project Path="Zlib-ng.NET/Zlib-ng.NET.csproj" />
+</Solution>
