@@ -10,7 +10,7 @@ public unsafe partial class Zlibng : IDisposable
     /// <summary>
     /// Library handle for the current zlib-ng instance
     /// </summary>
-    public nint Handle { get; }
+    public nint Handle { get; private set; }
 
     /// <summary>
     /// Initializes via a native zlib-ng library path
@@ -48,8 +48,8 @@ public unsafe partial class Zlibng : IDisposable
 
     private void ReleaseUnmanagedResources()
     {
-        if (Handle != nint.Zero)
-            NativeLibrary.Free(Handle);
+        NativeLibrary.Free(Handle);
+        Handle = nint.Zero;
     }
 
     /// <inheritdoc/>
