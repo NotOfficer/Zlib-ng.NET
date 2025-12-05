@@ -6,7 +6,7 @@
 
     <Description>A zlib-ng wrapper for .NET</Description>
     <PackageTags>zlib-ng, zlib, zlibng</PackageTags>
-    <Version>1.1.1</Version>
+    <Version>1.2.0</Version>
   </PropertyGroup>
 
   <PropertyGroup>
