@@ -11,7 +11,7 @@ using ZlibngDotNet;
 BenchmarkRunner.Run<ZlibngBenchmarks>();
 
 [MemoryDiagnoser(false)]
-[SimpleJob(RuntimeMoniker.Net90, baseline: true)]
+[SimpleJob(RuntimeMoniker.Net10_0, baseline: true)]
 [SimpleJob(RuntimeMoniker.Net80)]
 public class ZlibngBenchmarks
 {
