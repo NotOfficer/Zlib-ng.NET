@@ -25,7 +25,7 @@ internal static class Util
 
     public static unsafe string GetStringFromPtr(byte* ptr)
     {
-        var span = MemoryMarshal.CreateReadOnlySpanFromNullTerminated(ptr);
+        ReadOnlySpan<byte> span = MemoryMarshal.CreateReadOnlySpanFromNullTerminated(ptr);
         return span.Length == 0 ? "" : Encoding.UTF8.GetString(span);
     }
 }

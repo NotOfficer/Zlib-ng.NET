@@ -31,12 +31,12 @@ public unsafe partial class Zlibng : IDisposable
         Util.ThrowIfNull(handle);
         Handle = handle;
 
-        var compressBoundAddress = NativeLibrary.GetExport(Handle, "zng_compressBound");
-        var uncompressAddress    = NativeLibrary.GetExport(Handle, "zng_uncompress");
-        var uncompress2Address   = NativeLibrary.GetExport(Handle, "zng_uncompress2");
-        var compressAddress      = NativeLibrary.GetExport(Handle, "zng_compress");
-        var compress2Address     = NativeLibrary.GetExport(Handle, "zng_compress2");
-        var versionAddress       = NativeLibrary.GetExport(Handle, "zlibng_version");
+        IntPtr compressBoundAddress = NativeLibrary.GetExport(Handle, "zng_compressBound");
+        IntPtr uncompressAddress    = NativeLibrary.GetExport(Handle, "zng_uncompress");
+        IntPtr uncompress2Address   = NativeLibrary.GetExport(Handle, "zng_uncompress2");
+        IntPtr compressAddress      = NativeLibrary.GetExport(Handle, "zng_compress");
+        IntPtr compress2Address     = NativeLibrary.GetExport(Handle, "zng_compress2");
+        IntPtr versionAddress       = NativeLibrary.GetExport(Handle, "zlibng_version");
 
         CompressBoundFunctionPointer = (delegate* unmanaged<nint, nint>)compressBoundAddress;
         UncompressFunctionPointer    = (delegate* unmanaged<void*, ref nint, void*, nint, ZlibngCompressionResult>)uncompressAddress;

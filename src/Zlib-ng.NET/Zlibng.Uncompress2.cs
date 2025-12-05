@@ -43,9 +43,9 @@ public unsafe partial class Zlibng
         fixed (byte* destPtr = dest)
         fixed (byte* sourcePtr = source)
         {
-            var destLen = (nint)dest.Length;
-            var sourceLen = (nint)source.Length;
-            var result = Uncompress2FunctionPointer(destPtr, ref destLen, sourcePtr, ref sourceLen);
+            IntPtr destLen = (nint)dest.Length;
+            IntPtr sourceLen = (nint)source.Length;
+            ZlibngCompressionResult result = Uncompress2FunctionPointer(destPtr, ref destLen, sourcePtr, ref sourceLen);
             bytesWritten = T1.CreateChecked(destLen);
             bytesConsumed = T2.CreateChecked(sourceLen);
             return result;

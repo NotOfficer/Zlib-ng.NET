@@ -26,16 +26,16 @@ public class ZlibngBenchmarks
         Console.WriteLine($"Zlib-ng version: {_zlibng.GetVersionString()}");
 
         const int count = 4_000_00;
-        var randomBuffer = new byte[count * sizeof(long)]; // 3.2 MB
+        byte[] randomBuffer = new byte[count * sizeof(long)]; // 3.2 MB
         var random = new Random(187);
-        for (var i = 0; i < count; i += sizeof(long))
+        for (int i = 0; i < count; i += sizeof(long))
         {
             Unsafe.WriteUnaligned(ref randomBuffer[i], random.NextInt64(0, 69));
         }
-        var compressionBound = (int)_zlibng.CompressBound(randomBuffer.Length);
-        var tmpBuffer = ArrayPool<byte>.Shared.Rent(compressionBound);
-        var compressedSize = (uint)_zlibng.Compress2(tmpBuffer.AsSpan(0, compressionBound), randomBuffer, ZlibngCompressionLevel.Best);
-        var compressionRatio = (double)randomBuffer.Length / compressedSize;
+        int compressionBound = (int)_zlibng.CompressBound(randomBuffer.Length);
+        byte[] tmpBuffer = ArrayPool<byte>.Shared.Rent(compressionBound);
+        uint compressedSize = (uint)_zlibng.Compress2(tmpBuffer.AsSpan(0, compressionBound), randomBuffer, ZlibngCompressionLevel.Best);
+        double compressionRatio = (double)randomBuffer.Length / compressedSize;
         Console.WriteLine("Compression ratio: {0}", compressionRatio.ToString("0.000", CultureInfo.InvariantCulture));
         _destBuffer = randomBuffer;
         _srcBuffer = new byte[compressedSize];
@@ -81,7 +81,7 @@ public static class ManagedZlib
     {
         var inflater = new ICSharpCode.SharpZipLib.Zip.Compression.Inflater();
         inflater.SetInput(src);
-        var result = inflater.Inflate(dest);
+        int result = inflater.Inflate(dest);
         return result;
     }
 
@@ -103,7 +103,7 @@ public static class ManagedZlib
             AvailableBytesIn = src.Length,
             AvailableBytesOut = dest.Length
         };
-        var result = codec.Inflate(Ionic.Zlib.FlushType.Full);
+        int result = codec.Inflate(Ionic.Zlib.FlushType.Full);
         return result;
     }
 

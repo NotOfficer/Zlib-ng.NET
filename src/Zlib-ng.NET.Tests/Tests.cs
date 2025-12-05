@@ -19,18 +19,18 @@ public class Tests : IAsyncLifetime
     [Fact]
     public void CompressAndDecompress()
     {
-        var randomString = GetRandomString(8192);
-        var randomStringBuffer = Encoding.ASCII.GetBytes(randomString);
+        string randomString = GetRandomString(8192);
+        byte[] randomStringBuffer = Encoding.ASCII.GetBytes(randomString);
 
-        var compressedBufferSize = (int)_zlibng.CompressBound(randomStringBuffer.Length);
+        int compressedBufferSize = (int)_zlibng.CompressBound(randomStringBuffer.Length);
         Assert.NotEqual(0, compressedBufferSize);
 
-        var compressedBuffer = new byte[compressedBufferSize];
+        byte[] compressedBuffer = new byte[compressedBufferSize];
         var compressionResult = _zlibng.Compress(compressedBuffer, randomStringBuffer, out int compressedSize);
         Assert.Equal(ZlibngCompressionResult.Ok, compressionResult);
         Assert.NotEqual(0, compressedSize);
 
-        var decompressedBuffer = new byte[randomStringBuffer.Length];
+        byte[] decompressedBuffer = new byte[randomStringBuffer.Length];
         var decompressionResult = _zlibng.Uncompress(decompressedBuffer, compressedBuffer.AsSpan(0, compressedSize), out int decompressedSize);
         Assert.Equal(ZlibngCompressionResult.Ok, decompressionResult);
         Assert.NotEqual(0, decompressedSize);
@@ -83,7 +83,7 @@ public class Tests : IAsyncLifetime
         });
         using var response = await client.GetAsync(url);
         response.EnsureSuccessStatusCode();
-        var filePath = Path.GetTempFileName();
+        string filePath = Path.GetTempFileName();
         await using var fs = File.Create(filePath);
         await response.Content.CopyToAsync(fs);
         return filePath;

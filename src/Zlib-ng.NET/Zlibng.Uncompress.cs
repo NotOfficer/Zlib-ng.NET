@@ -50,9 +50,9 @@ public unsafe partial class Zlibng
         fixed (byte* destPtr = dest)
         fixed (byte* sourcePtr = source)
         {
-            var destLen = (nint)dest.Length;
-            var sourceLen = (nint)source.Length;
-            var result = UncompressFunctionPointer(destPtr, ref destLen, sourcePtr, sourceLen);
+            IntPtr destLen = (nint)dest.Length;
+            IntPtr sourceLen = (nint)source.Length;
+            ZlibngCompressionResult result = UncompressFunctionPointer(destPtr, ref destLen, sourcePtr, sourceLen);
             return Util.GetReturnValue(result, destLen);
         }
     }
@@ -89,9 +89,9 @@ public unsafe partial class Zlibng
         fixed (byte* destPtr = dest)
         fixed (byte* sourcePtr = source)
         {
-            var destLen = (nint)dest.Length;
-            var sourceLen = (nint)source.Length;
-            var result = UncompressFunctionPointer(destPtr, ref destLen, sourcePtr, sourceLen);
+            IntPtr destLen = (nint)dest.Length;
+            IntPtr sourceLen = (nint)source.Length;
+            ZlibngCompressionResult result = UncompressFunctionPointer(destPtr, ref destLen, sourcePtr, sourceLen);
             bytesWritten = T.CreateChecked(destLen);
             return result;
         }
